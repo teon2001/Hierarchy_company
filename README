@@ -1,0 +1,37 @@
+CERINTA 0
+    Am inceput prin a implementa preorderul astfel, daca tree de manager este NULL 
+inseamna ca este primul om din ierarhie deci il afisez singur, altfel afiser managerul
+cu copilul si in final, am grija sa pun un \n dupa o parcurgere intreaga.
+
+CERINTA 1
+    Pentru functia hire am tratat cazurile particulare, iar apoi
+am realocat un spatiul in team.ul managerului pentru a introduce noul angajat.
+    Pentru functia de fire, am aflat nodul unde este angajatul de eliminat, dupa care, 
+l-am eliminat din lista de team a managerului, si i-am lipit pe copiii acestui angajat la manager.
+    Pentru functia promote, am aflat daca este cel putin pe nivelul 2 folosindu-ma de if-ul
+cu tree->manager si tree->manager->manager. Astfel, am introdus angajatul la un nou manager, eliminandu-l
+din echipa fostului manager.
+    Pentru functia move_employee, un angajat trebuie sa se mute sub conducerea unui nou manager, iar
+echipa sa sa treaca sub conducerea managerului initial.
+    !!OBS: De specificat este ca de fiecare data cand elimin un angajat din team.ul unui manager, locul acela
+devine NULL, asa ca parcurg de acolo pana la final si deplasez inapoi ca sa nu existe goluri.
+    Pentru move_team am respectat acelasi principiu de realocare a team ului si de inseare.
+    Pentru functia fire_team, am ales sa fac o functie care sa stearga subarborele si apoi
+sa l sterg din team ul managerului pe angajatul sef(cel care reprezinta radacina subarborelui de sters).
+
+CERINTA 2
+    Pentru functia get_employees_by_manager am avut nevoie de un vector in care am parcurs subarborele
+determinat de nodul primit si am adaugat in acest vector de pointeri nodurile din subarbore, dupa care
+am sortat vectorul.
+    Pentru functia get_employees_by_level m-am folosit de recursivitate si am scazut -1 din nivel, deci cand
+nivel devenea egal cu 0 inseamna ca eram pe nivelul cerut, deci afisam. O problema intampinata era faptul ca 
+in unele situatii nu afisa in ordine alfabetica, deci iar am luat un vector, le-am pus in el si am sortat.
+    Pentru funtia get_best_manager, am ales sa folosesc o funtie care sa-mi afle numarul maxim de copii, dupa care
+am parcurs inca o data arborele si am retinut intr-un vector toate nodurile care au numarul maxim de copii
+determinat anterior, i-am sortat si am afisat.
+
+CERINTA 3
+    Pentru reorganizare am folosit 2 arbori, unul tree(initialul) si unul "final" care reprezinta arborele dupa
+reorganizare. Am luat initial si am rupt prima legatura intre nod si parinte, am pus acest subarbore in "final"
+si am actualizat last.ul la radacina "final"-ului. Dupa care, se continua recursiv, se ia acum nod->manager si 
+se leaga la last, adica la fostul nod copil, actualizandu-se iar lastul cu managerul. 
